@@ -14,4 +14,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('pix', Api\PixKeyController::class);
+Route::post('pix', [Api\PixKeyController::class, 'store']);
