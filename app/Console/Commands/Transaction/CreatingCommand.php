@@ -35,7 +35,7 @@ class CreatingCommand extends Command
              */
             $useCase = app(CreateUseCase::class);
             $useCase->exec(
-                bank: '4b964f8a-4d62-48e0-9418-aa19dc87426a',
+                bank: $data['bank'],
                 id: $data['id'],
                 description: $data['description'],
                 value: $data['value'],
