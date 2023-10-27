@@ -13,13 +13,17 @@ use Illuminate\Support\Arr;
 
 class TransactionRepository implements TransactionRepositoryInterface
 {
+    public function __construct(protected Transaction $model){
+        //
+    }
+
     private array $fieldsUpdated = [
         'status',
     ];
 
     public function create(DomainTransaction $entity): ?DomainTransaction
     {
-        if (Transaction::create($entity->toArray())) {
+        if ($this->model->create($entity->toArray())) {
             return $entity;
         }
 
@@ -28,7 +32,7 @@ class TransactionRepository implements TransactionRepositoryInterface
 
     public function save(DomainTransaction $entity): ?DomainTransaction
     {
-        if (($db = Transaction::find($entity->id())) && $db->update(
+        if (($db = $this->model->find($entity->id())) && $db->update(
                 Arr::only($entity->toArray(), $this->fieldsUpdated)
             )) {
             return $entity;
@@ -39,7 +43,7 @@ class TransactionRepository implements TransactionRepositoryInterface
 
     public function find(string $id): ?DomainTransaction
     {
-        return $this->toEntity(Transaction::find($id));
+        return $this->toEntity($this->model->find($id));
     }
 
     protected function toEntity(?Transaction $model): ?DomainTransaction

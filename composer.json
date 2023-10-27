@@ -13,6 +13,7 @@
         "laravellegends/pt-br-validator": "^10.0"
     },
     "require-dev": {
+        "captainhook/captainhook": "^5.18",
         "fakerphp/faker": "^1.9.1",
         "laravel/pint": "^1.0",
         "laravel/sail": "^1.18",
@@ -41,7 +42,8 @@
     "scripts": {
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi"
+            "@php artisan package:discover --ansi",
+            "php -r \"if (file_exists('./vendor/bin/captainhook')) { passthru('vendor/bin/captainhook install -f -s'); }\""
         ],
         "post-update-cmd": [
             "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
