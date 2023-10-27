@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->uuid('bank')->index();
             $table->string('status');
             $table->string('cancel_description')->nullable();
-            $table->string('description')->nullable();
+            $table->string('description');
             $table->uuid('reference')->index();
             $table->unsignedFloat('value');
             $table->string('kind');

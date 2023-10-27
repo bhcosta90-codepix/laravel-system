@@ -14,7 +14,7 @@ class TransactionRepository implements TransactionRepositoryInterface
 {
     public function find(string $id): ?DomainTransaction
     {
-        dd("TODO: Implement find() method.", $id);
+        return $this->toEntity(Transaction::find($id));
     }
 
     public function create(DomainTransaction $entity): ?DomainTransaction
@@ -26,6 +26,19 @@ class TransactionRepository implements TransactionRepositoryInterface
     public function save(DomainTransaction $entity): ?DomainTransaction
     {
         dd("TODO: Implement save() method.", $entity->toArray());
+    }
+
+    protected function toEntity(?Transaction $model): ?DomainTransaction
+    {
+        if ($model) {
+            $data = [
+                'kind' => EnumPixType::from($model->kind),
+                'status' => EnumTransactionStatus::from($model->status),
+            ];
+            return DomainTransaction::make($data + $model->toArray());
+        }
+
+        return null;
     }
 
 }
