@@ -11,9 +11,16 @@
 |
 */
 
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
+use Illuminate\Testing\TestResponse;
+
+use function Pest\Laravel\assertDatabaseCount;
+use function Pest\Laravel\assertDatabaseHas;
+
 uses(
     Tests\TestCase::class,
-     Illuminate\Foundation\Testing\RefreshDatabase::class,
+    Illuminate\Foundation\Testing\RefreshDatabase::class,
 )->in('Feature');
 
 /*
@@ -29,6 +36,18 @@ uses(
 
 expect()->extend('toBeOne', function () {
     return $this->toBe(1);
+});
+
+expect()->extend('toBeValidateResponse', function (TestResponse $response, string $field) {
+    return $this->toBe($response->json('errors')[$field][0]) && $response->assertStatus(422);
+});
+
+expect()->extend('toBeValidateDatabase', function (TestResponse $response, string|Model $table, array $except = []) {
+    assertDatabaseCount('pix_keys', 1);
+    assertDatabaseHas(
+        $table,
+        Arr::except($response->json('data') ?: $response->json(), $except + ['created_at', 'updated_at'])
+    );
 });
 
 /*

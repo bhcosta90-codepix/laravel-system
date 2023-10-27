@@ -48,7 +48,7 @@ class Handler extends ExceptionHandler
 //        }
 
         match(true){
-            $e instanceof EntityException => throw ValidationException::withMessages([$e->getMessage()]),
+            $e instanceof EntityException => throw ValidationException::withMessages([__($e->getMessage())]),
             default => null,
         };
 

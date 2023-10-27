@@ -29,7 +29,7 @@ class PixKeyRequest extends FormRequest
         ];
 
         match ($this->get('kind')) {
-            'email' => $rules['key'] = ['email', 'required'],
+            'email' => $rules['key'] = ['required', 'email'],
             'phone' => $rules['key'] = ['required', 'celular_com_ddd'],
             'document' => $rules['key'] = ['required', 'cpf_ou_cnpj'],
             default => null,
