@@ -18,8 +18,10 @@ class PixKeyRepository implements PixKeyRepositoryInterface
 
     public function create(DomainPixKey $entity): ?DomainPixKey
     {
-        PixKey::create($entity->toArray());
-        return $entity;
+        if (PixKey::create($entity->toArray())) {
+            return $entity;
+        }
+        return null;
     }
 
     protected function toEntity(?PixKey $model): ?DomainPixKey

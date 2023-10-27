@@ -9,9 +9,14 @@ use CodePix\System\Application\Repository\TransactionRepositoryInterface;
 use CodePix\System\Domain\DomainTransaction;
 use CodePix\System\Domain\Enum\EnumPixType;
 use CodePix\System\Domain\Enum\EnumTransactionStatus;
+use Illuminate\Support\Arr;
 
 class TransactionRepository implements TransactionRepositoryInterface
 {
+    private array $fieldsUpdated = [
+        'status'
+    ];
+
     public function find(string $id): ?DomainTransaction
     {
         return $this->toEntity(Transaction::find($id));
@@ -19,13 +24,22 @@ class TransactionRepository implements TransactionRepositoryInterface
 
     public function create(DomainTransaction $entity): ?DomainTransaction
     {
-        Transaction::create($entity->toArray());
-        return $entity;
+        if (Transaction::create($entity->toArray())) {
+            return $entity;
+        }
+
+        return null;
     }
 
     public function save(DomainTransaction $entity): ?DomainTransaction
     {
-        dd("TODO: Implement save() method.", $entity->toArray());
+        if (($db = Transaction::find($entity->id())) && $db->update(
+                Arr::only($entity->toArray(), $this->fieldsUpdated)
+            )) {
+            return $entity;
+        }
+
+        return null;
     }
 
     protected function toEntity(?Transaction $model): ?DomainTransaction

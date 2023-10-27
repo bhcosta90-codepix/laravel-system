@@ -9,7 +9,6 @@ use CodePix\System\Application\UseCases\Transaction\FindUseCase;
 
 use CodePix\System\Domain\DomainTransaction;
 
-use function PHPUnit\Framework\assertEquals;
 use function PHPUnit\Framework\assertInstanceOf;
 
 beforeEach(function () {
