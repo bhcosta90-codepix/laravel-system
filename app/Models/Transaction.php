@@ -10,6 +10,10 @@ class Transaction extends Model
 {
     use HasFactory, HasUuids;
 
+    protected $casts = [
+        'value' => 'float',
+    ];
+
     protected $fillable = [
         'id',
         'bank',

@@ -66,9 +66,18 @@ return [
         ],
 
         'testing' => [
-            'driver' => 'single',
+            'driver' => 'daily',
             'path' => storage_path('logs/testing.log'),
             'level' => env('LOG_LEVEL', 'debug'),
+            'days' => 14,
+            'replace_placeholders' => true,
+        ],
+
+        'queue' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/queue.log'),
+            'level' => env('LOG_LEVEL', 'debug'),
+            'days' => 14,
             'replace_placeholders' => true,
         ],
 
