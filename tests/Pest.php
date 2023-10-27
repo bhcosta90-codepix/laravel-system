@@ -54,6 +54,11 @@ expect()->extend('toBeDatabaseArray', function (array $data, string|Model $table
     );
 });
 
+expect()->extend('toBeRemoveDateTime', function(array $data, array $verify){
+    $remove = ['updated_at', 'created_at'];
+    return Arr::except($data, $remove) == Arr::except($verify, $remove);
+});
+
 /*
 |--------------------------------------------------------------------------
 | Functions

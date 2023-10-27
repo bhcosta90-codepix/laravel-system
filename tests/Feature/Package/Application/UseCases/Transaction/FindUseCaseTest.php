@@ -21,6 +21,7 @@ describe("FindUseCase Feature Test", function () {
     test("searching a transaction", function () {
         $response = $this->useCase->exec($this->transaction->id);
         assertInstanceOf(DomainTransaction::class, $response);
+        expect()->toBeRemoveDateTime($this->transaction->toArray(), $response->toArray());
     });
 
     test("exception -> searching a transaction", function () {
