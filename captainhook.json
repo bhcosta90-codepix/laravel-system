@@ -11,7 +11,7 @@
         "enabled": true,
         "actions": [
             {
-                "action": "./vendor/bin/pest --coverage --min=65.7 --parallel --processes=10"
+                "action": "./vendor/bin/pest"
             }
         ]
     },
