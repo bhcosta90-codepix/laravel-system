@@ -5,7 +5,6 @@ declare(strict_types=1);
 use App\Models\PixKey;
 use BRCas\CA\Exceptions\DomainNotFoundException;
 use CodePix\System\Application\UseCases\PixKey\FindUseCase;
-
 use CodePix\System\Domain\DomainPixKey;
 
 use function PHPUnit\Framework\assertInstanceOf;

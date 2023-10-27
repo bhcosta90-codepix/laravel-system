@@ -16,14 +16,6 @@ class PixKeyRepository implements PixKeyRepositoryInterface
         return $this->toEntity(PixKey::where('kind', $kind)->where('key', $key)->first());
     }
 
-    public function create(DomainPixKey $entity): ?DomainPixKey
-    {
-        if (PixKey::create($entity->toArray())) {
-            return $entity;
-        }
-        return null;
-    }
-
     protected function toEntity(?PixKey $model): ?DomainPixKey
     {
         if ($model) {
@@ -33,6 +25,14 @@ class PixKeyRepository implements PixKeyRepositoryInterface
             return DomainPixKey::make($data + $model->toArray());
         }
 
+        return null;
+    }
+
+    public function create(DomainPixKey $entity): ?DomainPixKey
+    {
+        if (PixKey::create($entity->toArray())) {
+            return $entity;
+        }
         return null;
     }
 }

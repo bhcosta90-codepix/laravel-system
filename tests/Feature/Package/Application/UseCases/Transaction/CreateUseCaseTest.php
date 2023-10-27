@@ -5,7 +5,6 @@ declare(strict_types=1);
 use App\Models\PixKey;
 use App\Models\Transaction;
 use CodePix\System\Application\UseCases\Transaction\CreateUseCase;
-
 use CodePix\System\Domain\Events\EventTransactionCreating;
 use CodePix\System\Domain\Events\EventTransactionError;
 use Illuminate\Support\Facades\Event;
@@ -39,7 +38,7 @@ describe("CreateUseCase Feature Test", function () {
         assertEquals('error', $response->status->value);
         assertEquals("Pix not found", $response->cancelDescription);
 
-        Event::assertDispatched(EventTransactionError::class, function($event) use($bank, $reference){
+        Event::assertDispatched(EventTransactionError::class, function ($event) use ($bank, $reference) {
             $verify = [
                 'bank' => $bank,
                 'id' => $reference,

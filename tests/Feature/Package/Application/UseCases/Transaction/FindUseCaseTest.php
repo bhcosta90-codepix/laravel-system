@@ -3,10 +3,8 @@
 declare(strict_types=1);
 
 use App\Models\Transaction;
-
 use BRCas\CA\Exceptions\DomainNotFoundException;
 use CodePix\System\Application\UseCases\Transaction\FindUseCase;
-
 use CodePix\System\Domain\DomainTransaction;
 
 use function PHPUnit\Framework\assertInstanceOf;

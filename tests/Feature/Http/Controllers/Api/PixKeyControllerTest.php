@@ -4,14 +4,10 @@ declare(strict_types=1);
 
 use App\Models\PixKey;
 
-use Illuminate\Support\Arr;
-
-use Illuminate\Support\Facades\Log;
-
 use function Pest\Laravel\postJson;
 use function PHPUnit\Framework\assertNotEquals;
 
-beforeEach(fn() => $this->defaults = ['bank' => (string) str()->uuid()]);
+beforeEach(fn() => $this->defaults = ['bank' => (string)str()->uuid()]);
 
 describe("PixKeyController Feature Test", function () {
     test("creating a multiple pix", function ($data) {
@@ -33,7 +29,7 @@ describe("PixKeyController Feature Test", function () {
         [['key' => '84.209.990/0001-62', 'kind' => 'document']],
     ]);
 
-    test("registering a pix passing the kind id with a defined value", function(){
+    test("registering a pix passing the kind id with a defined value", function () {
         $data = ['kind' => 'id', 'key' => 'testing'];
         $response = postJson('/api/pix', $this->defaults + $data);
         assertNotEquals('testing', $response->json('data.key'));

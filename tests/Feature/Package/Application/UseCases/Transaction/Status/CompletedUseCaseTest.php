@@ -3,13 +3,9 @@
 declare(strict_types=1);
 
 use App\Models\Transaction;
-
 use CodePix\System\Application\UseCases\Transaction\Status\CompletedUseCase;
-
 use CodePix\System\Domain\DomainTransaction;
-
 use CodePix\System\Domain\Enum\EnumTransactionStatus;
-
 use Costa\Entity\Exceptions\EntityException;
 
 use function PHPUnit\Framework\assertEquals;
@@ -32,11 +28,15 @@ describe("CompletedUseCase Feature Test", function () {
 
     test("exception when this transaction is open", function () {
         $transaction = Transaction::factory()->create();
-        expect(fn() => $this->useCase->exec($transaction->id))->toThrow(new EntityException('Only confirmed transactions can be completed'));
+        expect(fn() => $this->useCase->exec($transaction->id))->toThrow(
+            new EntityException('Only confirmed transactions can be completed')
+        );
     });
 
     test("exception when this transaction is pending", function () {
         $transaction = Transaction::factory()->create(['status' => EnumTransactionStatus::PENDING]);
-        expect(fn() => $this->useCase->exec($transaction->id))->toThrow(new EntityException('Only confirmed transactions can be completed'));
+        expect(fn() => $this->useCase->exec($transaction->id))->toThrow(
+            new EntityException('Only confirmed transactions can be completed')
+        );
     });
 });

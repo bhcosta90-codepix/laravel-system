@@ -47,7 +47,7 @@ class Handler extends ExceptionHandler
 //            ], Response::HTTP_UNPROCESSABLE_ENTITY);
 //        }
 
-        match(true){
+        match (true) {
             $e instanceof EntityException => throw ValidationException::withMessages([__($e->getMessage())]),
             default => null,
         };

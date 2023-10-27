@@ -14,13 +14,8 @@ use Illuminate\Support\Arr;
 class TransactionRepository implements TransactionRepositoryInterface
 {
     private array $fieldsUpdated = [
-        'status'
+        'status',
     ];
-
-    public function find(string $id): ?DomainTransaction
-    {
-        return $this->toEntity(Transaction::find($id));
-    }
 
     public function create(DomainTransaction $entity): ?DomainTransaction
     {
@@ -40,6 +35,11 @@ class TransactionRepository implements TransactionRepositoryInterface
         }
 
         return null;
+    }
+
+    public function find(string $id): ?DomainTransaction
+    {
+        return $this->toEntity(Transaction::find($id));
     }
 
     protected function toEntity(?Transaction $model): ?DomainTransaction

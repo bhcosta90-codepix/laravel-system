@@ -3,17 +3,11 @@
 declare(strict_types=1);
 
 use App\Models\Transaction;
-
-use BRCas\CA\Exceptions\DomainNotFoundException;
 use CodePix\System\Application\UseCases\Transaction\Status\ConfirmedUseCase;
-
 use CodePix\System\Domain\DomainTransaction;
-
 use CodePix\System\Domain\Enum\EnumTransactionStatus;
-
 use CodePix\System\Domain\Events\EventTransactionConfirmed;
 use Costa\Entity\Exceptions\EntityException;
-
 use Illuminate\Support\Facades\Event;
 
 use function PHPUnit\Framework\assertEquals;
@@ -35,7 +29,7 @@ describe("ConfirmedUseCase Feature Test", function () {
         assertEquals("confirmed", $response->status->value);
         assertEquals("confirmed", $this->transaction->status);
 
-        Event::assertDispatched(EventTransactionConfirmed::class, function($event){
+        Event::assertDispatched(EventTransactionConfirmed::class, function ($event) {
             $data = [
                 'bank' => $this->transaction->bank,
                 'id' => $this->transaction->reference,
@@ -46,6 +40,8 @@ describe("ConfirmedUseCase Feature Test", function () {
 
     test("exception when this transaction is open", function () {
         $transaction = Transaction::factory()->create();
-        expect(fn() => $this->useCase->exec($transaction->id))->toThrow(new EntityException('Only pending transaction can be confirmed'));
+        expect(fn() => $this->useCase->exec($transaction->id))->toThrow(
+            new EntityException('Only pending transaction can be confirmed')
+        );
     });
 });

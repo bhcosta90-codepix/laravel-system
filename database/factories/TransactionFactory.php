@@ -22,7 +22,7 @@ class TransactionFactory extends Factory
             'bank' => str()->uuid(),
             'status' => EnumTransactionStatus::OPEN,
             'reference' => str()->uuid(),
-            'value' => $this->faker->numberBetween(100,10000) / 100,
+            'value' => $this->faker->numberBetween(100, 10000) / 100,
             'kind' => EnumPixType::ID,
             'key' => str()->uuid(),
             'description' => $this->faker->sentence(5),
