@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use App\Console\Commands\Transaction\CreatingCommand;
 use App\Models\PixKey;
-use Tests\Stubs\RabbitMQStub;
+use Tests\Stubs\RabbitMQServiceStub;
 
 use function Pest\Laravel\assertDatabaseHas;
 
@@ -12,7 +12,7 @@ describe("CreatingCommand Unit Test", function () {
     test("creating a transaction with error", function () {
         $command = new CreatingCommand();
         $command->handle(
-            new RabbitMQStub([
+            new RabbitMQServiceStub([
                 "bank" => "4b964f8a-4d62-48e0-9418-aa19dc87426a",
                 "status" => "pending",
                 "cancel_description" => null,
@@ -55,7 +55,7 @@ describe("CreatingCommand Unit Test", function () {
 
         $command = new CreatingCommand();
         $command->handle(
-            new RabbitMQStub([
+            new RabbitMQServiceStub([
                 "bank" => "4b964f8a-4d62-48e0-9418-aa19dc87426a",
                 "status" => "pending",
                 "cancel_description" => null,

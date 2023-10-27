@@ -6,7 +6,7 @@ use App\Console\Commands\Transaction\CompletedCommand;
 use App\Models\PixKey;
 use App\Models\Transaction;
 use CodePix\System\Domain\Enum\EnumTransactionStatus;
-use Tests\Stubs\RabbitMQStub;
+use Tests\Stubs\RabbitMQServiceStub;
 
 use function Pest\Laravel\assertDatabaseHas;
 
@@ -16,7 +16,7 @@ describe("CompletedCommand Unit Test", function () {
 
         $command = new CompletedCommand();
         $command->handle(
-            new RabbitMQStub([
+            new RabbitMQServiceStub([
                 "id" => $transaction->id,
             ])
         );

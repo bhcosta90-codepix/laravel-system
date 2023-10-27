@@ -15,7 +15,7 @@ use App\Services\RabbitMQService;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Testing\TestResponse;
-use Tests\Stubs\RabbitMQStub;
+use Tests\Stubs\RabbitMQServiceStub;
 
 use function Pest\Laravel\assertDatabaseCount;
 use function Pest\Laravel\assertDatabaseHas;
@@ -24,7 +24,7 @@ uses(
     Tests\TestCase::class,
     Illuminate\Foundation\Testing\RefreshDatabase::class,
 )->beforeEach(function () {
-    $this->app->singleton(RabbitMQService::class, RabbitMQStub::class);
+    $this->app->singleton(RabbitMQService::class, RabbitMQServiceStub::class);
 })->in('Feature');
 
 /*

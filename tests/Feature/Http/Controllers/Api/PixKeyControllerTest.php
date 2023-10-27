@@ -57,61 +57,63 @@ describe("PixKeyController Feature Test", function () {
         ]);
     });
 
-    test("validating required fields", function ($data, $fields) {
-        $response = postJson('/api/pix', $data);
-        foreach ($fields as $field) {
-            expect(__('validation.required', ['attribute' => $field]))->toBeValidateResponse($response, $field);
-        }
-    })->with([
-        [[], ['bank', 'kind']],
-        [['bank' => '3c05a2c6-5ebe-4dee-9460-3ba5cade0992'], ['kind']],
-        [['bank' => '3c05a2c6-5ebe-4dee-9460-3ba5cade0992', 'kind' => 'email'], ['key']],
-        [['bank' => '3c05a2c6-5ebe-4dee-9460-3ba5cade0992', 'kind' => 'phone'], ['key']],
-        [['bank' => '3c05a2c6-5ebe-4dee-9460-3ba5cade0992', 'kind' => 'document'], ['key']],
-    ]);
+    describe("validation fields", function(){
+        test("validating required fields", function ($data, $fields) {
+            $response = postJson('/api/pix', $data);
+            foreach ($fields as $field) {
+                expect(__('validation.required', ['attribute' => $field]))->toBeValidateResponse($response, $field);
+            }
+        })->with([
+            [[], ['bank', 'kind']],
+            [['bank' => '3c05a2c6-5ebe-4dee-9460-3ba5cade0992'], ['kind']],
+            [['bank' => '3c05a2c6-5ebe-4dee-9460-3ba5cade0992', 'kind' => 'email'], ['key']],
+            [['bank' => '3c05a2c6-5ebe-4dee-9460-3ba5cade0992', 'kind' => 'phone'], ['key']],
+            [['bank' => '3c05a2c6-5ebe-4dee-9460-3ba5cade0992', 'kind' => 'document'], ['key']],
+        ]);
 
-    test("validating uuid fields", function ($data, $fields) {
-        $response = postJson('/api/pix', $data);
-        foreach ($fields as $field) {
-            expect(__('validation.uuid', ['attribute' => $field]))->toBeValidateResponse($response, $field);
-        }
-    })->with([
-        [['bank' => 'testing'], ['bank']],
-    ]);
+        test("validating uuid fields", function ($data, $fields) {
+            $response = postJson('/api/pix', $data);
+            foreach ($fields as $field) {
+                expect(__('validation.uuid', ['attribute' => $field]))->toBeValidateResponse($response, $field);
+            }
+        })->with([
+            [['bank' => 'testing'], ['bank']],
+        ]);
 
-    test("validating email fields", function ($data, $fields) {
-        $response = postJson('/api/pix', $data);
-        foreach ($fields as $field) {
-            expect(__('validation.email', ['attribute' => $field]))->toBeValidateResponse($response, $field);
-        }
-    })->with([
-        [['kind' => 'email', 'key' => 'testing'], ['key']],
-    ]);
+        test("validating email fields", function ($data, $fields) {
+            $response = postJson('/api/pix', $data);
+            foreach ($fields as $field) {
+                expect(__('validation.email', ['attribute' => $field]))->toBeValidateResponse($response, $field);
+            }
+        })->with([
+            [['kind' => 'email', 'key' => 'testing'], ['key']],
+        ]);
 
-    test("validating phone fields", function ($data, $fields) {
-        $response = postJson('/api/pix', $data);
-        foreach ($fields as $field) {
-            expect('O campo key não é um celular com DDD válido.')->toBeValidateResponse($response, $field);
-        }
-    })->with([
-        [['kind' => 'phone', 'key' => 'testing'], ['key']],
-    ]);
+        test("validating phone fields", function ($data, $fields) {
+            $response = postJson('/api/pix', $data);
+            foreach ($fields as $field) {
+                expect('O campo key não é um celular com DDD válido.')->toBeValidateResponse($response, $field);
+            }
+        })->with([
+            [['kind' => 'phone', 'key' => 'testing'], ['key']],
+        ]);
 
-    test("validating document fields", function ($data, $fields) {
-        $response = postJson('/api/pix', $data);
-        foreach ($fields as $field) {
-            expect('O campo key não é um CPF ou CNPJ válido.')->toBeValidateResponse($response, $field);
-        }
-    })->with([
-        [['kind' => 'document', 'key' => 'testing'], ['key']],
-    ]);
+        test("validating document fields", function ($data, $fields) {
+            $response = postJson('/api/pix', $data);
+            foreach ($fields as $field) {
+                expect('O campo key não é um CPF ou CNPJ válido.')->toBeValidateResponse($response, $field);
+            }
+        })->with([
+            [['kind' => 'document', 'key' => 'testing'], ['key']],
+        ]);
 
-    test("validating enum fields", function ($data, $fields) {
-        $response = postJson('/api/pix', $data);
-        foreach ($fields as $field) {
-            expect(__('validation.enum', ['attribute' => $field]))->toBeValidateResponse($response, $field);
-        }
-    })->with([
-        [['kind' => '___'], ['kind']],
-    ]);
+        test("validating enum fields", function ($data, $fields) {
+            $response = postJson('/api/pix', $data);
+            foreach ($fields as $field) {
+                expect(__('validation.enum', ['attribute' => $field]))->toBeValidateResponse($response, $field);
+            }
+        })->with([
+            [['kind' => '___'], ['kind']],
+        ]);
+    });
 });
