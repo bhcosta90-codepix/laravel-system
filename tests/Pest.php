@@ -42,11 +42,15 @@ expect()->extend('toBeValidateResponse', function (TestResponse $response, strin
     return $this->toBe($response->json('errors')[$field][0]) && $response->assertStatus(422);
 });
 
-expect()->extend('toBeValidateDatabase', function (TestResponse $response, string|Model $table, array $except = []) {
-    assertDatabaseCount('pix_keys', 1);
+expect()->extend('toBeDatabaseResponse', function (TestResponse $response, string|Model $table, array $except = []) {
+    expect(true)->toBeDatabaseArray($response->json('data') ?: $response->json(), $table, $except);
+});
+
+expect()->extend('toBeDatabaseArray', function (array $data, string|Model $table, array $except = []) {
+    assertDatabaseCount($table, 1);
     assertDatabaseHas(
         $table,
-        Arr::except($response->json('data') ?: $response->json(), $except + ['created_at', 'updated_at'])
+        Arr::except($data, $except + ['created_at', 'updated_at'])
     );
 });
 

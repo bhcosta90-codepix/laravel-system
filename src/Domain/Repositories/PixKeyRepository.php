@@ -18,8 +18,8 @@ class PixKeyRepository implements PixKeyRepositoryInterface
 
     public function create(DomainPixKey $entity): ?DomainPixKey
     {
-        $db = PixKey::create(['bank' => config('system.bank')] + $entity->toArray());
-        return $this->toEntity($db);
+        PixKey::create($entity->toArray());
+        return $entity;
     }
 
     protected function toEntity(?PixKey $model): ?DomainPixKey

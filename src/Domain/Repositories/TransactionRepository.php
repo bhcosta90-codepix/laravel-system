@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 namespace System\Domain\Repositories;
 
+use App\Models\Transaction;
 use CodePix\System\Application\Repository\TransactionRepositoryInterface;
 use CodePix\System\Domain\DomainTransaction;
+use CodePix\System\Domain\Enum\EnumPixType;
+use CodePix\System\Domain\Enum\EnumTransactionStatus;
 
 class TransactionRepository implements TransactionRepositoryInterface
 {
@@ -16,7 +19,8 @@ class TransactionRepository implements TransactionRepositoryInterface
 
     public function create(DomainTransaction $entity): ?DomainTransaction
     {
-        dd("TODO: Implement create() method.", $entity->toArray());
+        Transaction::create($entity->toArray());
+        return $entity;
     }
 
     public function save(DomainTransaction $entity): ?DomainTransaction

@@ -8,12 +8,10 @@ use Illuminate\Support\Arr;
 
 use Illuminate\Support\Facades\Log;
 
-use function Pest\Laravel\assertDatabaseCount;
-use function Pest\Laravel\assertDatabaseHas;
 use function Pest\Laravel\postJson;
 use function PHPUnit\Framework\assertNotEquals;
 
-beforeEach(fn() => $this->defaults = ['bank' => (string) config('system.bank')]);
+beforeEach(fn() => $this->defaults = ['bank' => (string) str()->uuid()]);
 
 describe("PixKeyController Feature Test", function () {
     test("creating a multiple pix", function ($data) {
@@ -27,7 +25,7 @@ describe("PixKeyController Feature Test", function () {
                 'updated_at',
             ],
         ]);
-        expect(true)->toBeValidateDatabase($response, PixKey::class);
+        expect(true)->toBeDatabaseResponse($response, PixKey::class);
     })->with([
         [['key' => 'test@test.com', 'kind' => 'email']],
         [['key' => '(19) 98870-9090', 'kind' => 'phone']],
@@ -39,7 +37,7 @@ describe("PixKeyController Feature Test", function () {
         $data = ['kind' => 'id', 'key' => 'testing'];
         $response = postJson('/api/pix', $this->defaults + $data);
         assertNotEquals('testing', $response->json('data.key'));
-        expect(true)->toBeValidateDatabase($response, PixKey::class);
+        expect(true)->toBeDatabaseResponse($response, PixKey::class);
     });
 
     test("creating a new pix but it already exists in our database", function () {

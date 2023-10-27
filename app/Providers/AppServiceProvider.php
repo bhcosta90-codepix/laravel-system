@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use BRCas\CA\Contracts\Event\EventManagerInterface;
 use Illuminate\Support\ServiceProvider;
+use System\Application\EventManager;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -15,6 +17,8 @@ class AppServiceProvider extends ServiceProvider
             $this->app->register(\Laravel\Telescope\TelescopeServiceProvider::class);
             $this->app->register(TelescopeServiceProvider::class);
         }
+
+        $this->app->singleton(EventManagerInterface::class, EventManager::class);
     }
 
     /**
