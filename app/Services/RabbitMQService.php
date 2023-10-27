@@ -13,7 +13,8 @@ use Throwable;
 
 class RabbitMQService implements AMQPInterface, RabbitMQInterface
 {
-    public function __construct(){
+    public function __construct()
+    {
         //
     }
 
@@ -32,14 +33,18 @@ class RabbitMQService implements AMQPInterface, RabbitMQInterface
             'routing' => $topic,
         ];
 
-        Amqp::consume($queue, function ($message, $resolver) use ($queue, $closure) {
-            try {
-                $closure($message->body);
-                $resolver->acknowledge($message);
-            } catch (Throwable $e) {
-                Log::error("Error consumer {$queue}: " . $e->getMessage() . json_encode($e->getTrace()));
-            }
-        }, $custom + $topic);
+        do {
+            Amqp::consume($queue, function ($message, $resolver) use ($queue, $closure) {
+                try {
+                    $closure($message->body);
+                    $resolver->acknowledge($message);
+                } catch (Throwable $e) {
+                    Log::error("Error consumer {$queue}: " . $e->getMessage() . json_encode($e->getTrace()));
+                }
+                $resolver->stopWhenProcessed();
+            }, $custom + $topic);
+            sleep(1);
+        } while (true);
     }
 
 }

@@ -36,7 +36,7 @@ describe("CreateUseCase Feature Test", function () {
 
         expect()->toBeDatabaseArray($response->toArray(), Transaction::class);
         assertEquals('error', $response->status->value);
-        assertEquals("Pix not found", $response->cancelDescription);
+        assertEquals("PIX not found", $response->cancelDescription);
 
         Event::assertDispatched(EventTransactionError::class, function ($event) use ($bank, $reference) {
             $verify = [

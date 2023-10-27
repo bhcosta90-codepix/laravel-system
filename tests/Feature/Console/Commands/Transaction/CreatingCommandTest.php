@@ -39,7 +39,7 @@ describe("CreatingCommand Unit Test", function () {
             'reference' => '018b720a-d0ec-738a-bc5d-a25e8bd684bc',
             "bank" => "4b964f8a-4d62-48e0-9418-aa19dc87426a",
             "status" => "error",
-            "cancel_description" => "Pix not found",
+            "cancel_description" => "PIX not found",
             "description" => "testing",
             "value" => 50.0,
             "kind" => "email",
