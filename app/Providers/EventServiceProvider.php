@@ -25,9 +25,9 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
-        EventTransactionCompleted::class => [
-            CompletedListener::class
-        ],
+//        EventTransactionCompleted::class => [
+//            CompletedListener::class
+//        ],
         EventTransactionConfirmed::class => [
             ConfirmedListener::class
         ],
