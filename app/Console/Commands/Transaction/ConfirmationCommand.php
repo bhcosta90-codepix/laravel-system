@@ -3,7 +3,6 @@
 namespace App\Console\Commands\Transaction;
 
 use App\Services\Contracts\RabbitMQInterface;
-use CodePix\System\Application\UseCases\Transaction\CreateUseCase;
 use CodePix\System\Application\UseCases\Transaction\Status\ConfirmedUseCase;
 use Illuminate\Console\Command;
 

@@ -9,7 +9,6 @@ use Costa\Entity\ValueObject\Uuid;
 use System\Domain\Repositories\PixKeyRepository;
 
 use function PHPUnit\Framework\assertNull;
-use function Tests\arrayDomainPixKey;
 
 describe("PixKeyRepository Unit Test", function () {
     test("Testing a function create", function () {

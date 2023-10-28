@@ -43,7 +43,9 @@ class RabbitMQService implements AMQPInterface, RabbitMQInterface
                     $closure($message->body);
                     Log::driver('queue')->info("Success consumer {$queue}: " . $message->body);
                 } catch (Throwable $e) {
-                    Log::driver('queue')->error("Error consumer {$queue}: " . $e->getMessage() . json_encode($e->getTrace()));
+                    Log::driver('queue')->error(
+                        "Error consumer {$queue}: " . $e->getMessage() . json_encode($e->getTrace())
+                    );
                 }
                 $resolver->acknowledge($message);
                 $resolver->stopWhenProcessed();

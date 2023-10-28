@@ -57,7 +57,7 @@ describe("PixKeyController Feature Test", function () {
         ]);
     });
 
-    describe("validation fields", function(){
+    describe("validation fields", function () {
         test("validating required fields", function ($data, $fields) {
             $response = postJson('/api/pix', $data);
             foreach ($fields as $field) {

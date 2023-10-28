@@ -11,9 +11,11 @@ use CodePix\System\Domain\Enum\EnumPixType;
 
 class PixKeyRepository implements PixKeyRepositoryInterface
 {
-    public function __construct(protected PixKey $model){
+    public function __construct(protected PixKey $model)
+    {
         //
     }
+
     public function find(EnumPixType $kind, string $key): ?DomainPixKey
     {
         return $this->toEntity($this->model->where('kind', $kind)->where('key', $key)->first());

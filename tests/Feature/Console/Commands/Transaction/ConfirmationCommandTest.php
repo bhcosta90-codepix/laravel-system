@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 use App\Console\Commands\Transaction\ConfirmationCommand;
-use App\Models\PixKey;
 use App\Models\Transaction;
 use CodePix\System\Domain\Enum\EnumTransactionStatus;
 use Tests\Stubs\RabbitMQServiceStub;
@@ -23,7 +22,7 @@ describe("ConfirmationCommand Unit Test", function () {
 
         $transaction->refresh();
         assertDatabaseHas(Transaction::class, [
-            'status' => 'confirmed'
+            'status' => 'confirmed',
         ]);
     });
 });

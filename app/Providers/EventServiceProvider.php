@@ -6,7 +6,6 @@ use App\Listeners\Transaction\CompletedListener;
 use App\Listeners\Transaction\ConfirmedListener;
 use App\Listeners\Transaction\CreatedListener;
 use App\Listeners\Transaction\ErrorListener;
-use CodePix\System\Domain\Events\EventTransactionCompleted;
 use CodePix\System\Domain\Events\EventTransactionConfirmed;
 use CodePix\System\Domain\Events\EventTransactionCreating;
 use CodePix\System\Domain\Events\EventTransactionError;
@@ -29,13 +28,13 @@ class EventServiceProvider extends ServiceProvider
 //            CompletedListener::class
 //        ],
         EventTransactionConfirmed::class => [
-            ConfirmedListener::class
+            ConfirmedListener::class,
         ],
         EventTransactionCreating::class => [
-            CreatedListener::class
+            CreatedListener::class,
         ],
         EventTransactionError::class => [
-            ErrorListener::class
+            ErrorListener::class,
         ],
     ];
 

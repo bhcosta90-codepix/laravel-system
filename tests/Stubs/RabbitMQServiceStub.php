@@ -25,7 +25,9 @@ class RabbitMQServiceStub implements AMQPInterface, RabbitMQInterface
 
     public function consume(string $queue, array|string $topic, Closure $closure, array $custom = []): void
     {
-        Log::driver('testing')->info(['action' => __FUNCTION__, 'queue' => $queue, 'topic' => $topic, 'custom' => $custom]);
+        Log::driver('testing')->info(
+            ['action' => __FUNCTION__, 'queue' => $queue, 'topic' => $topic, 'custom' => $custom]
+        );
         $closure($this->data);
     }
 }

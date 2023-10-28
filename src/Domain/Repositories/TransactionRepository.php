@@ -13,13 +13,14 @@ use Illuminate\Support\Arr;
 
 class TransactionRepository implements TransactionRepositoryInterface
 {
-    public function __construct(protected Transaction $model){
-        //
-    }
-
     private array $fieldsUpdated = [
         'status',
     ];
+
+    public function __construct(protected Transaction $model)
+    {
+        //
+    }
 
     public function create(DomainTransaction $entity): ?DomainTransaction
     {
@@ -45,10 +46,6 @@ class TransactionRepository implements TransactionRepositoryInterface
     {
         return $this->toEntity($this->model->find($id));
     }
-    public function byReference(string $reference): ?DomainTransaction
-    {
-        return $this->toEntity($this->model->where('reference', $reference)->first());
-    }
 
     protected function toEntity(?Transaction $model): ?DomainTransaction
     {
@@ -61,6 +58,11 @@ class TransactionRepository implements TransactionRepositoryInterface
         }
 
         return null;
+    }
+
+    public function byReference(string $reference): ?DomainTransaction
+    {
+        return $this->toEntity($this->model->where('reference', $reference)->first());
     }
 
 }

@@ -9,5 +9,6 @@ use Closure;
 interface RabbitMQInterface
 {
     public function publish($name, array $value = []): void;
+
     public function consume(string $queue, string|array $topic, Closure $closure, array $custom = []): void;
 }

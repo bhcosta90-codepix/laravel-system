@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
 
         PixKey::factory()->createMany([
             ['kind' => 'email', 'key' => 'account1@account.com'],
-            ['kind' => 'email', 'key' => 'account2@account.com']
+            ['kind' => 'email', 'key' => 'account2@account.com'],
         ]);
     }
 }

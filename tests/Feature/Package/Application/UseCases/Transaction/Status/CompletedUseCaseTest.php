@@ -18,7 +18,7 @@ beforeEach(function () {
 
 describe("CompletedUseCase Feature Test", function () {
     test("saving a completed transaction", function () {
-        $response = $this->useCase->exec((string) $this->transaction->reference);
+        $response = $this->useCase->exec((string)$this->transaction->reference);
         $this->transaction->refresh();
 
         assertInstanceOf(DomainTransaction::class, $response);
@@ -28,14 +28,14 @@ describe("CompletedUseCase Feature Test", function () {
 
     test("exception when this transaction is open", function () {
         $transaction = Transaction::factory()->create();
-        expect(fn() => $this->useCase->exec((string) $transaction->reference))->toThrow(
+        expect(fn() => $this->useCase->exec((string)$transaction->reference))->toThrow(
             new EntityException('Only confirmed transactions can be completed')
         );
     });
 
     test("exception when this transaction is pending", function () {
         $transaction = Transaction::factory()->create(['status' => EnumTransactionStatus::PENDING]);
-        expect(fn() => $this->useCase->exec((string) $transaction->reference))->toThrow(
+        expect(fn() => $this->useCase->exec((string)$transaction->reference))->toThrow(
             new EntityException('Only confirmed transactions can be completed')
         );
     });
