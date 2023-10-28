@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\PixKey;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -18,5 +19,10 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+
+        PixKey::factory()->createMany([
+            ['kind' => 'email', 'key' => 'account1@account.com'],
+            ['kind' => 'email', 'key' => 'account2@account.com']
+        ]);
     }
 }

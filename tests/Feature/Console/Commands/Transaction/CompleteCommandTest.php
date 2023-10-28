@@ -17,7 +17,7 @@ describe("CompletedCommand Unit Test", function () {
         $command = new CompletedCommand();
         $command->handle(
             new RabbitMQServiceStub([
-                "id" => $transaction->id,
+                "id" => $transaction->reference,
             ])
         );
 

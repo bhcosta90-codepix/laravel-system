@@ -45,6 +45,10 @@ class TransactionRepository implements TransactionRepositoryInterface
     {
         return $this->toEntity($this->model->find($id));
     }
+    public function byReference(string $reference): ?DomainTransaction
+    {
+        return $this->toEntity($this->model->where('reference', $reference)->first());
+    }
 
     protected function toEntity(?Transaction $model): ?DomainTransaction
     {

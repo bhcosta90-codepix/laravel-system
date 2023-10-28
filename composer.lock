@@ -125,12 +125,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bhcosta90-codepix/package-system-v2.git",
-                "reference": "4197d482a2986999eb906c8dd2e7ea4445ac7348"
+                "reference": "002ba1af88a7fd9871d7b8a341f550e185d96c3d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bhcosta90-codepix/package-system-v2/zipball/4197d482a2986999eb906c8dd2e7ea4445ac7348",
-                "reference": "4197d482a2986999eb906c8dd2e7ea4445ac7348",
+                "url": "https://api.github.com/repos/bhcosta90-codepix/package-system-v2/zipball/002ba1af88a7fd9871d7b8a341f550e185d96c3d",
+                "reference": "002ba1af88a7fd9871d7b8a341f550e185d96c3d",
                 "shasum": ""
             },
             "require": {
@@ -168,7 +168,7 @@
                 "source": "https://github.com/bhcosta90-codepix/package-system-v2/tree/master",
                 "issues": "https://github.com/bhcosta90-codepix/package-system-v2/issues"
             },
-            "time": "2023-10-27T18:26:29+00:00"
+            "time": "2023-10-28T12:55:17+00:00"
         },
         {
             "name": "brick/math",

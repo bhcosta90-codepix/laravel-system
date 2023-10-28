@@ -21,6 +21,6 @@ class ConfirmedListener
     public function handle(EventTransactionConfirmed $event): void
     {
         $payload = $event->payload();
-        $this->AMQP->publish("{$payload['bank']}.transaction.confirmation", $payload);
+        $this->AMQP->publish("{$payload['bank']}.transaction.complete", $payload);
     }
 }
