@@ -42,6 +42,7 @@ describe("CreateUseCase Feature Test", function () {
             $verify = [
                 'bank' => $bank,
                 'id' => $reference,
+                "message" => "PIX not found"
             ];
             return $event->payload() == $verify;
         });
