@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c4342bdb92b9846f324f3cec61eec1c2",
+    "content-hash": "15c8e2594ed6c39b473b9286c8a33c36",
     "packages": [
         {
             "name": "bhcosta90/clean-architecture",
@@ -120,17 +120,17 @@
             "time": "2023-10-26T17:19:45+00:00"
         },
         {
-            "name": "bhcosta90/package-system-v2",
+            "name": "bhcosta90/package-system",
             "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bhcosta90-codepix/package-system-v2.git",
-                "reference": "002ba1af88a7fd9871d7b8a341f550e185d96c3d"
+                "reference": "61a7566bcf84add333314e1711b20209b7eeadd3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bhcosta90-codepix/package-system-v2/zipball/002ba1af88a7fd9871d7b8a341f550e185d96c3d",
-                "reference": "002ba1af88a7fd9871d7b8a341f550e185d96c3d",
+                "url": "https://api.github.com/repos/bhcosta90-codepix/package-system-v2/zipball/61a7566bcf84add333314e1711b20209b7eeadd3",
+                "reference": "61a7566bcf84add333314e1711b20209b7eeadd3",
                 "shasum": ""
             },
             "require": {
@@ -168,7 +168,7 @@
                 "source": "https://github.com/bhcosta90-codepix/package-system-v2/tree/master",
                 "issues": "https://github.com/bhcosta90-codepix/package-system-v2/issues"
             },
-            "time": "2023-10-28T12:55:17+00:00"
+            "time": "2023-10-28T13:16:18+00:00"
         },
         {
             "name": "brick/math",
@@ -9924,7 +9924,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "bhcosta90/package-system-v2": 20
+        "bhcosta90/package-system": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
