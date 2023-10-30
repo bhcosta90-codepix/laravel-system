@@ -14,4 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('pix', [Api\PixKeyController::class, 'store']);
+Route::middleware('client')->group(function(){
+    Route::post('pix', [Api\PixKeyController::class, 'store'])->middleware('client:register-pix-keys');
+});
