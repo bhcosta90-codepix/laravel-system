@@ -124,7 +124,7 @@
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/bhcosta90-codepix/package-system-v2.git",
+                "url": "https://github.com/bhcosta90-codepix/php-package-system-v2.git",
                 "reference": "3e0ee83367ad4fd7e5e8359123af8849cd40e2ac"
             },
             "dist": {
@@ -165,8 +165,8 @@
                 }
             ],
             "support": {
-                "source": "https://github.com/bhcosta90-codepix/package-system-v2/tree/master",
-                "issues": "https://github.com/bhcosta90-codepix/package-system-v2/issues"
+                "source": "https://github.com/bhcosta90-codepix/php-package-system-v2/tree/master",
+                "issues": "https://github.com/bhcosta90-codepix/php-package-system-v2/issues"
             },
             "time": "2023-10-30T19:09:17+00:00"
         },
