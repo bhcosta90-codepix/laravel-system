@@ -7,6 +7,7 @@ use App\Services\Contracts\RabbitMQInterface;
 use App\Services\RabbitMQService;
 use BRCas\CA\Contracts\Event\EventManagerInterface;
 use Illuminate\Support\ServiceProvider;
+use Laravel\Passport\Passport;
 use System\Application\EventManager;
 
 class AppServiceProvider extends ServiceProvider
@@ -24,6 +25,10 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(EventManagerInterface::class, EventManager::class);
         $this->app->singleton(AMQPInterface::class, RabbitMQService::class);
         $this->app->singleton(RabbitMQInterface::class, RabbitMQService::class);
+
+        Passport::tokensCan([
+            'register-pix-keys' => 'Register pix keys in database',
+        ]);
     }
 
     /**

@@ -4,10 +4,20 @@ declare(strict_types=1);
 
 use App\Models\PixKey;
 
+use Laravel\Passport\Client;
+use Laravel\Passport\Passport;
+
 use function Pest\Laravel\postJson;
 use function PHPUnit\Framework\assertNotEquals;
 
-beforeEach(fn() => $this->defaults = ['bank' => (string)str()->uuid()]);
+beforeEach(function(){
+    $this->defaults = ['bank' => (string)str()->uuid()];
+
+    Passport::actingAsClient(
+        Client::factory()->create(),
+        ['register-pix-keys']
+    );
+});
 
 describe("PixKeyController Feature Test", function () {
     test("creating a multiple pix", function ($data) {

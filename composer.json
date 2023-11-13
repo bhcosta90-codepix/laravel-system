@@ -10,6 +10,7 @@
         "bschmitt/laravel-amqp": "^2.1",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^10.10",
+        "laravel/passport": "^11.9",
         "laravel/tinker": "^2.8",
         "laravellegends/pt-br-validator": "^10.0"
     },
@@ -77,7 +78,7 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/bhcosta90-codepix/package-system-v2"
+            "url": "https://github.com/bhcosta90-codepix/php-package-system-v2"
         },
         {
             "type": "vcs",
