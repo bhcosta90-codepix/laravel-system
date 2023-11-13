@@ -12,9 +12,11 @@ scripts:
     - kool start
     - kool run composer install
     - kool run artisan key:generate
+    - kool run artisan passport:install
   reset:
     - kool run composer install
     - kool run artisan migrate:fresh --seed
+    - kool run artisan passport:install
   before-start:
     - kool docker kooldev/bash -c "cp .env.example .env"
   # CLI access to PostgreSQL
