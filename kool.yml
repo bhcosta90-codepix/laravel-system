@@ -14,6 +14,7 @@ scripts:
     - kool run artisan key:generate
     - kool run artisan migrate
     - kool run artisan passport:install
+    - kool run chmod 777 -R storage
   reset:
     - kool run composer install
     - kool run artisan migrate:fresh --seed
