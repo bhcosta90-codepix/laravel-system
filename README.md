@@ -14,5 +14,6 @@ Install https://kool.dev/
 git clone git@github.com:bhcosta90-codepix/laravel-system.git
 cd laravel-system
 kool run setup
+sudo chmod 777 -R storage
 ```
     
