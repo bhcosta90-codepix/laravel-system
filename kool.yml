@@ -12,6 +12,7 @@ scripts:
     - kool start
     - kool run composer install
     - kool run artisan key:generate
+    - kool run artisan migrate
     - kool run artisan passport:install
   reset:
     - kool run composer install
