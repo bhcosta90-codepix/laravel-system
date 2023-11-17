@@ -17,6 +17,7 @@ services:
             - kool_global
         extra_hosts:
             - 'host.docker.internal:host-gateway'
+
     commands:
         image: kooldev/php:8.2-nginx
         volumes:
@@ -42,12 +43,30 @@ services:
             - kool_local
         healthcheck:
             test: [ "CMD", "pg_isready", "-q", "-d", "$DB_DATABASE", "-U", "$DB_USERNAME" ]
+    
     cache:
         image: memcached:1.6-alpine
         volumes:
             - cache:/data:delegated
         networks:
             - kool_local
+    
+    rabbitmq:
+        image: "rabbitmq:3-management"
+        ports:
+        - "15673:15672"
+        - "5673:5672"
+        environment:
+            RABBITMQ_DEFAULT_USER: "root"
+            RABBITMQ_DEFAULT_PASS: "root"
+            RABBITMQ_DEFAULT_VHOST: "/"
+        volumes:
+            - ./.data/rabbitmq:/var/lib/rabbitmq
+        extra_hosts:
+            - 'host.docker.internal:host-gateway'
+        networks:
+            - kool_local
+
 #
 # Networks definitions
 #
